@@ -1,7 +1,15 @@
-FROM node:19.4
-WORKDIR /usr/src/app
-COPY . .
+FROM node:18
+
+WORKDIR /app
+
+COPY . /app/
+
+COPY package*.json /app/
+
 RUN npm install
-RUN npm ci
-EXPOSE 3000
+
+RUN npm run build
+
+EXPOSE 8080
+
 CMD ["npm", "start"]
