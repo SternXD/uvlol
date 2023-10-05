@@ -1,0 +1,13 @@
+---
+import Layout from "@layout";
+import "@css/style.css";
+import "@css/settings.css";
+---
+
+<Layout title="Settings">
+  <script is:inline>
+    typeof router == "undefined"
+      ? location.replace("/settings/general")
+      : router.go("settings/general");
+  </script>
+</Layout>

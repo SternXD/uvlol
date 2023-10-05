@@ -1,0 +1,488 @@
+---
+// @ts-nocheck
+import Plugins from "@plugins";
+import Section from "@components/Section.astro";
+
+var proxy = [
+    {
+        name: "AdBlocker",
+        author: "avd3",
+        url: "/js/scripts/adBlocker.js",
+        description: "Works on all proxies. IT DOES NOT (sylvie)",
+        id: "proxy-0002"
+    },
+    {
+        name: "Dark Mode",
+        author: "Riftriot",
+        url: "/js/scripts/darkMode.js",
+        description: "If the website is not in dark mode, this script will invert all colors on the website.",
+        id: "proxy-0003"
+    },
+    {
+        name: ":3",
+        author: "avd3",
+        url: "/js/scripts/3.js",
+        description: ":3",
+        id: "proxy-0004"
+    }
+]
+
+var modules = [
+    {
+        name: "Change something",
+        author: "Riftriot",
+        url: "/js/testscript.js",
+        description: "Change something in homepage",
+        id: "module-0001"
+    }
+]
+---
+
+<Plugins title="User Scripts">
+    <style>
+        .selected-opt {
+            background: var(--settings-3) !important;
+        }
+    </style>
+
+    <Section>
+        <h1 class="text-xl">Proxy Injection Scripts</h1>
+        <p>Scripts are run on both SW (excluding Aero) and proxy client (both excluding Rammerhead).</p>
+        <p>Usermade scripts are not supported because it's very easy to make a script to steal your information.</p>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+        }}>
+            {
+                proxy.map((script) => (
+                    <div id={script.id} class="element">
+                        <style scoped>
+                            .element .play {
+                                width: 250px;
+                                height: 85px;
+                                border-bottom-right-radius: 25px;
+                                border-bottom-left-radius: 25px;
+                                bottom: 0;
+                                padding-top: 18px;
+                                margin: 0 auto;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                position: absolute;
+                                
+                            }
+                
+                            .element  .installbutton {
+                                width: 150px;
+                                height: 50px;
+                                border: 1px solid var(--settings-3);
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-radius: 15px;
+                                background-color: var(--settings-2);
+                                transition: 0.3s;
+                            }
+                
+                            .element  .installbutton:hover {
+                                width: 175px;
+                                transition: 0.3s;
+                            }
+                
+                            .element  .installtext {
+                                text-align: center;
+                                font-weight: bold;
+                                color: var(--font-color);
+                                font-size: 18px;
+                                padding-top: 10px;
+                            }
+                
+                            .element {
+                                border: 1px solid var(--settings-3);
+                                float: left;
+                                height: 205px;
+                                width: 250px;
+                                color: var(--font-color);
+                                background-color: var(--settings-1);
+                                border-radius: 25px;
+                                margin: 10px;
+                                position: relative;
+                            }
+                
+                            .element  h2 {
+                                font-weight: bold;
+                                font-size: 20px;
+                                padding-right: 10px;
+                                padding-left: 10px;
+                                border-bottom: 1px solid var(--settings-3); 
+                                line-height: 0.1em;
+                                padding-top: px;
+                            }
+                
+                            .element  h2 span { 
+                                background:var(--settings-1); 
+                                padding:0 10px;
+                                
+                            }
+
+                            .element  h3 {
+                                margin-top: 10px;
+                                margin-left: 5px;
+                                padding-left: 15px;
+                                font-size: 14px;
+                            }
+
+                            .element h3 span {
+                                color: var(--primary-text-color);
+                            }
+                
+                            .element p {
+                                padding-right: 10px;
+                                padding-left: 10px;
+                                font-size: 13px;
+                                color: var(--primary-text-color);
+                            }
+                        </style>
+                        <br />
+                        <h2><span>{script.name}</span></h2>
+                        <h3><span>by {script.author}</span></h3>
+                        <p style="margin-top: 20px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
+                        <div class="play">
+                            <button class="script-button" data-url={script.url} data-script={btoa(JSON.stringify(script))}>
+                                <div class="installbutton">
+                                    <p class="installtext" data-id={script.id}>Install</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+
+    <Section>
+        <h1 class="text-xl">Noctura Module Scripts</h1>
+        <p>Scripts are run on Noctura page loads (excluding router loads)</p>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+        }}>
+            {
+                modules.map((script) => (
+                    <div id={script.id} class="element">
+                        <style scoped>
+                            .element .play {
+                                width: 250px;
+                                height: 85px;
+                                border-bottom-right-radius: 25px;
+                                border-bottom-left-radius: 25px;
+                                bottom: 0;
+                                margin: 0 auto;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                position: absolute;
+                            }
+                
+                            .element .installbutton {
+                                width: 150px;
+                                height: 50px;
+                                border: 1px solid var(--settings-3);
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-radius: 15px;
+                                background-color: var(--settings-2);
+                                transition: 0.3s;
+                            }
+                
+                            .element .installbutton:hover {
+                                width: 175px;
+                                transition: 0.3s;
+                            }
+                
+                            .element  .installtext {
+                                text-align: center;
+                                font-weight: bold;
+                                color: var(--font-color);
+                                font-size: 18px;
+                                padding-top: 10px;
+                            }
+                
+                            .element {
+                                border: 1px solid var(--settings-3);
+                                float: left;
+                                height: 205px;
+                                width: 250px;
+                                color: var(--font-color);
+                                background-color: var(--settings-1);
+                                border-radius: 25px;
+                                margin: 10px;
+                                position: relative;
+                            }
+                
+                            .element h2 {
+                                font-weight: bold;
+                                font-size: 20px;
+                                padding-right: 10px;
+                                padding-left: 10px;
+                                border-bottom: 1px solid var(--settings-3); 
+                                line-height: 0.1em;
+                            }
+                
+                            .element h2 span { 
+                                background:var(--settings-1); 
+                                padding:0 10px;
+                                
+                            }
+
+                            .element h3 {
+                                margin-top: 10px;
+                                margin-left: 5px;
+                            }
+
+                            .element h3 span {
+                                color: var(--font-color);
+                            }
+                
+                            .element p {
+                                padding-right: 10px;
+                                padding-left: 10px;
+                                font-size: 13px;
+                                color: var(--font-color);
+                            }
+                        </style>
+                        <br />
+                        <h2><span>{script.name}</span></h2>
+                        <h3><span>by {script.author}</span></h3>
+                        <p style="margin-top: 5px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
+                        <div class="play">
+                            <button class="script-button" data-url={script.url} data-script={btoa(JSON.stringify(script))}>
+                                <div class="installbutton">
+                                    <p class="installtext" data-id={script.id}>Install</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+
+    <Section>
+        <h1 class="text-xl">Script Editor</h1>
+        <p>very cool</p>
+        <button class="plugins-submit" onclick="window.setInject(this); ">Proxy Injection</button>
+        <button class="plugins-submit mb-1" onclick="window.setModule(this); ">Noctura Module</button>
+        <div id="monaco-editor"></div>
+        <button class="plugins-submit" onclick="window.saveEdits();">Save</button>
+    </Section>
+
+    <script type="module">
+        const scripts = await caches.open('astro-scripts');
+        const modules = await caches.open('astro-modules');
+
+        document.querySelectorAll("p.installtext").forEach((text) => {
+            const scriptInfo = (JSON.parse(localStorage.getItem("scripts")) || {})[text.dataset.id];
+
+            (!scriptInfo || scriptInfo === "uninstalled") ? text.innerText = "Install" : text.innerText = "Uninstall";
+        });
+
+        document.querySelectorAll(".script-button").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const script = JSON.parse(atob(btn.dataset.script));
+
+                scriptEvent(script);
+            })
+        })
+
+        window.scriptEvent = (script) => {
+            const type = script.id.split("-")[0];
+            const scriptInfo = (JSON.parse(localStorage.getItem("scripts") || "{}"))[script.id];
+
+            if (type === "proxy") {
+                (!scriptInfo || scriptInfo === "uninstalled") ? window.installScript(script) : window.uninstallScript(script);
+            } else if (type === "module") {
+                (!scriptInfo || scriptInfo === "uninstalled") ? window.installModule(script) : window.uninstallModule(script);
+            }
+        }
+
+        const reqScript = (url) => {
+            return new Promise((resolve, reject) => {
+                fetch(url).then((res) => {
+                    res.text().then((text) => {
+                        resolve(text)
+                    })
+                })
+            })
+        }
+
+        const setScript = (id, type) => {
+            const scripts = JSON.parse(localStorage.getItem("scripts")) || {};
+            scripts[id] = type;
+            localStorage.setItem("scripts", JSON.stringify(scripts));
+        }
+
+        // (un)install scripts will load information into localStorage instead because it is loaded into memory (faster)
+
+        window.installScript = async (script) => {
+            notify.show("Fetching Data", "info", 2000);
+
+            const data = await reqScript(script.url);
+
+            await notify.hide();
+            notify.show("Installing Script", "info", 2000);
+
+            await scripts.put('/' + script.id + '.js', new Response(data, {
+                headers: {
+                    'Content-Type': 'text/javascript'
+                }
+            }));
+
+            await window.registerSW();
+
+            await notify.hide();
+            notify.show("Script Installed", "success", 2000);
+
+            document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Uninstall";
+            setScript(script.id, "installed");
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        }
+
+        window.uninstallScript = async (script) => {
+            notify.show("Uninstalling Script", "info", 2000);
+            await notify.hide();
+            await scripts.delete("/" + script.id + ".js");
+
+            await notify.hide();
+            notify.show("Script Uninstalled", "success", 2000);
+
+            document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Install";
+            setScript(script.id, "uninstalled");
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        }
+
+        window.installModule = async (script) => {
+            notify.show("Fetching Data", "info", 2000);
+
+            const data = await reqScript(script.url);
+
+            await notify.hide();
+            notify.show("Installing Module", "info", 2000);
+
+            await modules.put('/' + script.id + '.js', new Response(data, {
+                headers: {
+                    'Content-Type': 'application/javascript'
+                }
+            }));
+
+            await notify.hide();
+            notify.show("Module Installed", "success", 2000);
+
+            document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Uninstall";
+            setScript(script.id, "installed");
+        }
+
+        window.uninstallModule = async (script) => {
+            notify.show("Uninstalling Script", "info", 2000);
+            await notify.hide();
+            await modules.delete("/" + script.id + ".js");
+
+            await notify.hide();
+            notify.show("Script Uninstalled", "success", 2000);
+
+            document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Install";
+            setScript(script.id, "uninstalled");
+        }
+    </script>
+
+    <script>
+        import createEditor from "../../js/editor";
+
+        const view = createEditor("js");
+
+        window.moduleText = 
+    `// @ts-nocheck (best solution)
+    // Runs after page load.
+    `
+
+        window.injectText = 
+    `// @ts-nocheck (best solution)
+    // Runs after page load.
+
+    if (typeof __dynamic$config == 'object') {
+        /* Runs in Dynamic, SW and Client
+        Constants: __dynamic, __dynamic$config, __dynamic$location, __dynamic$meta
+        */
+
+        // CODE HERE
+    }
+
+    if (typeof __uv$config == 'object') {
+        /* Runs in UV, SW and Client
+        Constants: __uv, __uv$config, __uv.location, __uv.meta
+        */
+
+        // CODE HERE
+    }
+
+    if (typeof __aero$config == 'object') {
+        /* Runs in Aero 2, Client only
+        Constants: __aero$config, __aero$meta
+        */
+
+        // CODE HERE
+    }`;
+
+        window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-inject") || injectText } }) : window.defaultText = injectText};
+        window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-module") || moduleText } }) : window.defaultText = moduleText};
+
+        window.saveEdits = async function() {
+            const script = view.state.doc.toString()
+                switch(window.editing) {
+                    case "inject": {
+                        let cache = await caches.open("astro-scripts");
+                        localStorage.setItem('saved-inject', script);
+                        await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
+
+                        await window.registerSW();
+
+                        await notify.hide();
+                        notify.show("Saved Script", "success", 2000);
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                        break;
+                    }
+                    case "module": {
+                        let cache = await caches.open("astro-modules");
+                        localStorage.setItem('saved-module', script);
+                        await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
+
+                        await window.registerSW();
+
+                        await notify.hide();
+                        notify.show("Saved Module", "success", 2000);
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                        break;
+                    }
+                    default: {
+                        Function(script)();
+                        break;
+                    }
+                }
+            }
+    </script>
+</Plugins>
