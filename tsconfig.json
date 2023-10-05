@@ -1,0 +1,19 @@
+{
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@css/*": ["src/style/*"],
+      "@layout": ["src/layouts/Layout.astro"],
+      "@settings": ["src/layouts/Settings.astro"],
+      "@plugins": ["src/layouts/Plugins.astro"],
+      "@sections/*": ["src/sections/*"],
+      "@image/*": ["src/assets/img/*"]
+    }
+  }
+}
