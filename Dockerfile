@@ -1,12 +1,21 @@
-FROM node:20.5.1-bullseye-slim
-ENV NODE_ENV=production
+# Build stage
+FROM node:20.5.1-bullseye-slim AS build
 
-WORKDIR /src
+WORKDIR /app
 
-COPY ["package.json", "./"]
+COPY package*.json ./
 
-RUN npm install
+RUN npm ci --only=production
 
 COPY . .
 
-CMD [ "node", "index.js" ]
+# Run stage
+FROM node:20.5.1-bullseye-slim AS run
+
+WORKDIR /app
+
+COPY --from=build /app .
+
+USER node
+
+CMD ["node", "index.js"]
