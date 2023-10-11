@@ -1,5 +1,5 @@
 # Build stage
-FROM node:20.5.1-bullseye-slim
+FROM node:20.8.0-bullseye-slim
 ENV NODE_ENV=production
 
 RUN apt-get update && apt-get install -y git
