@@ -1,7 +1,7 @@
 FROM node:20.5.1-bullseye-slim
 ENV NODE_ENV=production
 
-WORKDIR /app
+WORKDIR /src
 
 COPY ["package.json", "./"]
 
