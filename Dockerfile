@@ -6,13 +6,7 @@ WORKDIR /app
 
 COPY ["package.json", "./"]
 
-RUN npm cache clean --force
-
-RUN npm install -g npm@latest
-
-RUN npm install -g node-gyp
-
-RUN npm install
+RUN pnpm install
 
 COPY . .
 
