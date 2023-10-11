@@ -1,23 +1,15 @@
 # Build stage
-FROM node:20.5.1-bullseye-slim AS build
+FROM node:20.5.1-bullseye-slim
+ENV NODE_ENV=production
 
 RUN apt-get update && apt-get install -y git
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY ["package.json", "./"]
 
-RUN npm ci --only=production
+RUN npm install
 
 COPY . .
-
-# Run stage
-FROM node:20.5.1-bullseye-slim AS run
-
-WORKDIR /app
-
-COPY --from=build /app .
-
-USER node
 
 CMD ["node", "index.js"]
