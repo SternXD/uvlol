@@ -1,15 +1,8 @@
-# Build stage
-FROM node:latest
-ENV NODE_ENV=production
-
-WORKDIR /app
-
-COPY ["package.json", "./"]
-
-RUN npm install -g pnpm
-
-RUN pnpm install
-
+FROM node:20.4-bookworm-slim
+WORKDIR /usr/src/app
 COPY . .
-
-CMD ["node", "index.js"]
+RUN npm i -g pnpm
+RUN pnpm i
+RUN npm run build
+EXPOSE 8080
+CMD ["npm", "start"]
